@@ -11,7 +11,7 @@ public class CameraTracking : MonoBehaviour {
 		//カメラにVRカメラ以外の子オブジェクトがついていなければカメラの子供になる
 		GameObject obj = GameObject.Find ("Camera");
 		int Count = obj.transform.childCount;
-		if (Count == 2) {
+		if (Count == 3) {
 				transform.parent = obj.transform;
 			}
 	}
