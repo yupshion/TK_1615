@@ -59,7 +59,7 @@ public class MonsterFire : MonoBehaviour {
 //			particle = Instantiate (particle, transform.position + new Vector3(0.0f, 1.0f, 0.0f) + (transform.forward * 0.5f), transform.rotation) as GameObject;
             prefabs.Add(temp);
             temp.GetComponent<Rigidbody>().velocity = transform.forward * 15.0f;
-            checkObjectNum(num);
+//            checkObjectNum(num);
         }
     }
 
