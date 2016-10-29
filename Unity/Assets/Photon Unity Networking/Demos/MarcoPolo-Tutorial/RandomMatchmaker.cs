@@ -3,6 +3,7 @@ using UnityEngine;
 public class RandomMatchmaker : Photon.PunBehaviour
 {
     private PhotonView myPhotonView;
+	public GameObject Camera;
 
     // Use this for initialization
 	void Start()
@@ -33,10 +34,16 @@ public class RandomMatchmaker : Photon.PunBehaviour
     }
 
     public override void OnJoinedRoom()
-    {
+    {	/*
         GameObject monster = PhotonNetwork.Instantiate("monsterprefab", Vector3.zero, Quaternion.identity, 0);
         monster.GetComponent<myThirdPersonController>().isControllable = true;
         myPhotonView = monster.GetComponent<PhotonView>();
+		*/
+		//変更部分。モデルの変更、初期位置の設定をしている
+		Vector3 position = new Vector3(Camera.transform.position.x, 0, Camera.transform.position.z);
+		GameObject monster = PhotonNetwork.Instantiate("Card", position, Quaternion.identity, 0);
+		monster.GetComponent<myThirdPersonController>().isControllable = true;
+		myPhotonView = monster.GetComponent<PhotonView>();
     }
 
     public void OnGUI()
