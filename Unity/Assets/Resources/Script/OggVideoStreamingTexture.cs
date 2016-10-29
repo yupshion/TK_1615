@@ -4,13 +4,13 @@ using System;
 
 public class OggVideoStreamingTexture : MonoBehaviour {
 
-	public string OggVideoURL;
-	public GameObject GameobjectForVideoTexture;
+	//public string OggVideoURL;
+	//public GameObject GameobjectForVideoTexture;
 
 	void Start () {
-		StreamPlayVideoAsTexture();
+		//StreamPlayVideoAsTexture();
 	}
-
+	/*
 	public void StreamPlayVideoAsTexture()
 	{
 		if (this.OggVideoURL!="") {
@@ -37,5 +37,6 @@ public class OggVideoStreamingTexture : MonoBehaviour {
 		movieTexture.Play();
 		audioSource.Play();
 	}
+	*/
 
 }
