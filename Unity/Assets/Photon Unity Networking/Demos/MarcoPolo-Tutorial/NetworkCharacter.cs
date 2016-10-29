@@ -6,8 +6,8 @@ public class NetworkCharacter : Photon.MonoBehaviour
     private Quaternion correctPlayerRot = Quaternion.identity; // We lerp towards this
 	void Awake(){
 		if (photonView.isMine) {
-			GetComponent<ThirdPersonCamera> ().enabled = true;
-			GetComponent<MonsterFire> ().enabled = true;
+			//GetComponent<ThirdPersonCamera> ().enabled = true;
+			//GetComponent<MonsterFire> ().enabled = true;
 
 		}
 
