@@ -9,6 +9,7 @@
 import Foundation
 import Speech
 import AudioToolbox
+//#import <AudioToolbox/AudioToolbox.h>
 
 private func AudioQueueInputCallback(
     _ inUserData: UnsafeMutableRawPointer?,
@@ -32,16 +33,18 @@ class SpeechRecognizerModel: NSObject{
     
     //音量
     var queue: AudioQueueRef!
-    var timer: Timer!
+    var timer = Timer()
+    var volume = 0//volumeを保存
     
     //設定->スタート
     func Setting(){
         
         if audioEngine.isRunning {//動いていたら
+            StopVolume()
             self.audioEngine.stop()
             recognitionRequest?.endAudio()
             isStop = true
-            UnitySendMessage("ObjectGenerater", "chooseModelInputText", "stop")
+            UnitySendMessage("ObjectGenerater", "chooseModelInputText", "swiftstop")
             print("↑　end swiftStartRecordingMethod\n")
             
         } else {//止まっていたら
@@ -64,17 +67,15 @@ class SpeechRecognizerModel: NSObject{
                 }
             }
             
-            //SettingVolume()
-            
-            
             try! self.Start()
+            SettingVolume()
+            
         }
     }
     
-
     //スタート->スタート
     func Start() throws{
-        UnitySendMessage("ObjectGenerater", "chooseModelInputText", "start")
+        UnitySendMessage("ObjectGenerater", "chooseModelInputText", "swiftstart")
         print("↓　start swiftStartRecordingMethod\n")
         isStop = false
         
@@ -84,7 +85,7 @@ class SpeechRecognizerModel: NSObject{
         
         var countDictionary = [String:Int]()
         
-        //認識するデータ配列
+        //認識するデータの初期配列
         //キーの重複禁止
         let jpDictionary = ["りんご":"apple","ゴリラ":"gorilla","リンゴ":"apple","ごりら":"gorilla",
              "よくない":"-1",
@@ -275,9 +276,10 @@ class SpeechRecognizerModel: NSObject{
                         //もしワードが含まれていたら
                         if tmp.contains("\(jpWord)"){
                             
-                            print("Swift　【\(jpWord)】")
+                            print("Swift　【\(jpWord)】 volune : \(self.volume)")
                             //Unityに送信
                             UnitySendMessage("ObjectGenerater", "chooseModelInputText", "\(enWord)")
+                            // \(-self.volume)
                             
                             //何回ワードが出てきたかカウント
                             if countDictionary["\(jpWord)"] == nil{
@@ -289,10 +291,8 @@ class SpeechRecognizerModel: NSObject{
                             countDictionary["\(jpWord)"] = countDictionary["\(jpWord)"]! + 1
                             
                             //出現した言葉保存
-                            //tmp = tmp.replacingOccurrences(of: "\(jpWord)", with: "\(enWord)"))
                             let range = tmp.range(of: "\(jpWord)")
                             
-
                             if range != nil{
                                 rangeArray.append(range!)
                             }
@@ -306,13 +306,15 @@ class SpeechRecognizerModel: NSObject{
             
             //終了したら
             if isFinal || error != nil {
+                self.StopVolume()
                 self.audioEngine.stop()
                 inputNode.removeTap(onBus: 0)
                 
                 self.recognitionRequest = nil
                 self.recognitionTask = nil
                 
-                UnitySendMessage("ObjectGenerater", "chooseModelInputText", "stop")
+                
+                UnitySendMessage("ObjectGenerater", "chooseModelInputText", "swiftstop")
                 print("↑　end swiftStartRecordingMethod\n")
                 
                 if self.isStop == false{
@@ -337,13 +339,15 @@ class SpeechRecognizerModel: NSObject{
     
     //ストップ
     func Stop(){
+        StopVolume()
         self.audioEngine.stop()
         recognitionRequest?.endAudio()
         isStop = true
-        UnitySendMessage("ObjectGenerater", "chooseModelInputText", "stop")
+        UnitySendMessage("ObjectGenerater", "chooseModelInputText", "swiftstop")
         print("↑　end swiftStartRecordingMethod\n")
     }
     
+    //音量測定セッティング
     func SettingVolume(){
         
         // Set data format
@@ -386,10 +390,11 @@ class SpeechRecognizerModel: NSObject{
                                           selector: #selector(SpeechRecognizerModel.DetectVolume(_:)),
                                           userInfo: nil,
                                           repeats: true)
-        self.timer?.fire()
+        self.timer.fire()
         
     }
     
+    //音量測定
     func DetectVolume(_ timer: Timer)
     {
         // Get level
@@ -403,9 +408,22 @@ class SpeechRecognizerModel: NSObject{
             &propertySize)
         
         // Show the audio channel's peak and average RMS power.
-        print("".appendingFormat("%.2f", levelMeter.mPeakPower))
-        print("".appendingFormat("%.2f", levelMeter.mAveragePower))
-
+        print("peak".appendingFormat("%.2f", levelMeter.mPeakPower))
+        print("aver".appendingFormat("%.2f", levelMeter.mAveragePower),"\n")
+        
+        self.volume = -(Int)(levelMeter.mPeakPower)
+        
     }
+    
+    //音量測定ストップ
+    func StopVolume()
+    {
+        // Finish observation
+        self.timer.invalidate()
+        AudioQueueFlush(self.queue)
+        AudioQueueStop(self.queue, false)
+        AudioQueueDispose(self.queue, true)
+    }
+
     
 }
