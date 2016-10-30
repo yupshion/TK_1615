@@ -1155,7 +1155,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   str: 
-  particle: {fileID: 0}
+  particle: {fileID: 100002, guid: b824f6f760d254b4fb44e809d0af9eb3, type: 2}
 --- !u!4 &1648669408
 Transform:
   m_ObjectHideFlags: 0
