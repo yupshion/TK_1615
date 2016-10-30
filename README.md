@@ -76,4 +76,6 @@ FaceBookは、VRならではの感情表現の曖昧さを問題視し、HTCvive
 独自で開発したものの内容をこちらに記載してください
 * iOS10（先月）から公開されたiOS音声認識APIをUnityからObjective-Cを通して呼び出し、会話からリアルタイムにオブジェクトを出力するプラグインを自作
 * iOSについて音声認識と並行して音量測定処理を走らせる処理を実装
+code：https://github.com/jphacks/TK_1615/blob/master/iOS/SpeechRecognizerModel.swift
+
 * UnityVR化SDKとしてメジャーなGoogle CardBoardが、音声認識に必要なiOS10においてバグがあり未解決とのことで、VR化をジャイロセンサなどを取得しつつ自作（デバックモードでなければ動くことを発見したので、全国の困っている人に通知）
