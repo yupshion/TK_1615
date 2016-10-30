@@ -421,20 +421,6 @@ Prefab:
       propertyPath: instantiationId
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 114000012544204654, guid: 163495d3e7436439b82c7385b27d799d,
-        type: 2}
-      propertyPath: image
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000012544204654, guid: 163495d3e7436439b82c7385b27d799d,
-        type: 2}
-      propertyPath: canvas
-      value: 
-      objectReference: {fileID: 2119278836}
-    - target: {fileID: 1000014159290770, guid: 163495d3e7436439b82c7385b27d799d, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 163495d3e7436439b82c7385b27d799d, type: 2}
   m_IsPrefabParent: 0
@@ -1024,6 +1010,10 @@ Prefab:
     - target: {fileID: 11414954, guid: 970dd4b9371394fb4890965f608d46fd, type: 2}
       propertyPath: screenSize
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 177758, guid: 970dd4b9371394fb4890965f608d46fd, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 970dd4b9371394fb4890965f608d46fd, type: 2}

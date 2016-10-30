@@ -22,19 +22,6 @@ public class MonsterFire : MonoBehaviour {
 			GameObject bullet = PhotonNetwork.Instantiate ("Bullet", transform.position + new Vector3 (0.0f, 1.0f, 0.0f) + (transform.forward * 0.5f), transform.rotation, 0);
 			bullet.GetComponent<Rigidbody> ().velocity = transform.forward * 15.0f;
 		}
-
-        if(Input.GetKeyDown(KeyCode.C))
-        {
-            chooseModelInputText("apple");
-            GameObject.Find("RawImage").GetComponent<RawImage>().enabled = true;
-        }
-
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            chooseModelInputText("gorilla");
-            GameObject.Find("RawImage").GetComponent<RawImage>().enabled = false;
-        }
-
     }
 
     void chooseModelInputText(string message)
@@ -49,21 +36,34 @@ public class MonsterFire : MonoBehaviour {
         string pos = "Prefab/";
         pos += message;
 
+
+        if (message == "swiftstart")
+        {
+            GameObject.Find("RawImage").GetComponent<RawImage>().enabled = true;
+        }
+
+        if (message == "switftstop")
+        {
+            GameObject.Find("RawImage").GetComponent<RawImage>().enabled = false;
+        }
+
+
         //GameObject temp = (GameObject)Resources.Load(modelName);
         GameObject temp = (GameObject)Resources.Load(pos);
         if (temp != null)
         {
+            prefabs.Add(temp);
             num = prefabs.Count;//リストが削除されることを考えていない
             //Instantiate(prefabs[num - 1], new Vector3(0f, 1f, 0f), Quaternion.identity);
             temp = PhotonNetwork.Instantiate(pos, transform.position + new Vector3(0.0f, 1.0f, 0.0f) + (transform.forward * 0.5f), transform.rotation, 0);
 //			particle = Instantiate (particle, transform.position + new Vector3(0.0f, 1.0f, 0.0f) + (transform.forward * 0.5f), transform.rotation) as GameObject;
-            prefabs.Add(temp);
+
             temp.GetComponent<Rigidbody>().velocity = transform.forward * 15.0f;
 //            checkObjectNum(num);
         }
     }
 
-
+/*
     void checkObjectNum(int num)
     {
         if(maxObjectNum <= num)
@@ -72,4 +72,5 @@ public class MonsterFire : MonoBehaviour {
             prefabs.RemoveAt(0);
         }
     }
+*/
 }
