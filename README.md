@@ -1,5 +1,4 @@
 # こえもじVR
-![logo](https://github.com/jphacks/TK_1615/blob/master/Image/%E3%81%93%E3%81%88%E3%82%82%E3%81%98VR_logo.png "logo")
 ## 製品概要
 声🗣を具象化💫して相手に伝える🙏🏻新しい🎉コミュニケーションプラットフォーム
 
