@@ -1155,7 +1155,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   str: 
-  particle: {fileID: 100002, guid: b824f6f760d254b4fb44e809d0af9eb3, type: 2}
+  particle: {fileID: 0}
 --- !u!4 &1648669408
 Transform:
   m_ObjectHideFlags: 0
@@ -1501,6 +1501,7 @@ GameObject:
   - 143: {fileID: 2037021390}
   - 82: {fileID: 2037021389}
   - 114: {fileID: 2037021388}
+  - 114: {fileID: 2037021392}
   m_Layer: 0
   m_Name: Cameracontroller
   m_TagString: Untagged
@@ -1520,7 +1521,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05ec5cf00ca181d45a42ba1870e148c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_IsWalking: 0
+  m_IsWalking: 1
   m_WalkSpeed: 1
   m_RunSpeed: 2
   m_RunstepLenghten: 0
@@ -1701,6 +1702,17 @@ Transform:
   - {fileID: 979322878}
   m_Father: {fileID: 0}
   m_RootOrder: 8
+--- !u!114 &2037021392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2037021387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9498c8e1f4e94bfbad94a493547d23e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2061300271
 GameObject:
   m_ObjectHideFlags: 0
