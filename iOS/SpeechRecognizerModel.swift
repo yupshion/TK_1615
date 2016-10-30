@@ -32,6 +32,7 @@ class SpeechRecognizerModel: NSObject{
     private var recognitionTask: SFSpeechRecognitionTask?
     private let audioEngine = AVAudioEngine()
     var isStop = false//音声認識Stopボタンが押されたか
+    var isFirst = false//始めの起動か
     
     //音量取得
     var queue: AudioQueueRef!
@@ -70,13 +71,20 @@ class SpeechRecognizerModel: NSObject{
             }
             
             try! self.Start()
+            isFirst = true
             SettingVolume()
-            
         }
     }
     
     //音声認識スタート
     func Start() throws{
+        
+        if isFirst{
+            isFirst = false
+        }else{
+            SettingVolume()
+        }
+        
         UnitySendMessage("ObjectGenerater", "chooseModelInputText", "swiftstart")
         print("↓　start swiftStartRecordingMethod\n")
         isStop = false
@@ -161,7 +169,7 @@ class SpeechRecognizerModel: NSObject{
                             
                             print("Swift　【\(jpWord)】 volune : \(self.volume)")
                             //Unityに送信
-                            UnitySendMessage("ObjectGenerater", "chooseModelInputText", "\(enWord)")
+                            UnitySendMessage("ObjectGenerater", "chooseModelInputText", "\(enWord)_\(self.volume)")
                             
                             //何回ワードが出てきたかカウント
                             if countDictionary["\(jpWord)"] == nil{
@@ -289,11 +297,13 @@ class SpeechRecognizerModel: NSObject{
             &propertySize)
         
         // Show the audio channel's peak and average RMS power.
-        print("peak".appendingFormat("%.2f", levelMeter.mPeakPower))
-        print("aver".appendingFormat("%.2f", levelMeter.mAveragePower),"\n")
+        //print("peak".appendingFormat("%.2f", levelMeter.mPeakPower))
+        //print("aver".appendingFormat("%.2f", levelMeter.mAveragePower),"\n")
         
-        //levelMeter.mPeakPowe -120 - 0 -> 0 - 100
-        self.volume = ((Int)(levelMeter.mPeakPower) + 120) * (100/120)
+        self.volume = (Int)((levelMeter.mPeakPower + 144.0) * (100.0/144.0))
+        
+        //print("vvvv",self.volume)
+        
         
     }
     
