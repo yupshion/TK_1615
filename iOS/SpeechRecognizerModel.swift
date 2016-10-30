@@ -292,7 +292,8 @@ class SpeechRecognizerModel: NSObject{
         print("peak".appendingFormat("%.2f", levelMeter.mPeakPower))
         print("aver".appendingFormat("%.2f", levelMeter.mAveragePower),"\n")
         
-        self.volume = -(Int)(levelMeter.mPeakPower)
+        //levelMeter.mPeakPowe -120 - 0 -> 0 - 100
+        self.volume = ((Int)(levelMeter.mPeakPower) + 120) * (100/120)
         
     }
     
