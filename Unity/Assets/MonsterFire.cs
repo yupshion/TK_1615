@@ -10,10 +10,12 @@ public class MonsterFire : MonoBehaviour {
     private List<GameObject> prefabs = new List<GameObject>();
     private const int maxObjectNum = 200;
 	public GameObject particle;
+//    public RawImage rawImage;
 
     // Use this for initialization
     void Start () {
         GameObject.Find("RawImage").GetComponent<RawImage>().enabled = false;
+
     }
 
     // Update is called once per frame
@@ -22,42 +24,20 @@ public class MonsterFire : MonoBehaviour {
 			GameObject bullet = PhotonNetwork.Instantiate ("Bullet", transform.position + new Vector3 (0.0f, 1.0f, 0.0f) + (transform.forward * 0.5f), transform.rotation, 0);
 			bullet.GetComponent<Rigidbody> ().velocity = transform.forward * 15.0f;
 		}
-/*
-        if(Input.GetKeyDown(KeyCode.J))
+
+        if(Input.GetKeyDown(KeyCode.C))
         {
-            chooseModelInputText("apple_10");
-        }
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            chooseModelInputText("apple_50");
-        }
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            chooseModelInputText("apple_100");
+                        chooseModelInputText("apple");
+            //GameObject.Find("RawImage").GetComponent<RawImage>().enabled = true;
+//            image.fillAmount = 0;
         }
 
         if (Input.GetKeyDown(KeyCode.B))
         {
-            chooseModelInputText("gorilla_10");
+                        chooseModelInputText("gorilla");
+            //GameObject.Find("RawImage").GetComponent<RawImage>().enabled = false;
+            //            image.fillAmount = 0.5f;
         }
-        if (Input.GetKeyDown(KeyCode.N))
-        {
-            chooseModelInputText("gorilla_50");
-        }
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            chooseModelInputText("gorilla_100");
-        }
-
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            chooseModelInputText("swiftstart");
-        }
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            chooseModelInputText("swiftstop");
-        }
-*/
 
     }
 
@@ -70,44 +50,28 @@ public class MonsterFire : MonoBehaviour {
 
 		int num = 0;
 
-        if (message.IndexOf("_")<=0) {
-            if (message == "swiftstart")
-            {
-                GameObject.Find("RawImage").GetComponent<RawImage>().enabled = true;
-            }
-
-            if (message == "swiftstop")
-            {
-                GameObject.Find("RawImage").GetComponent<RawImage>().enabled = false;
-            }
-            return;
-        }
-
-        //string[0]:word, string[1]:value for scale
-        string[] stArrayData = message.Split('_');
-        int objScale = int.Parse(stArrayData[1]);
-
         string pos = "Prefab/";
-        pos += stArrayData[0];
-
-        Debug.Log(stArrayData[0]);
+        pos += message;
 
         //GameObject temp = (GameObject)Resources.Load(modelName);
         GameObject temp = (GameObject)Resources.Load(pos);
         if (temp != null)
         {
-            prefabs.Add(temp);
             num = prefabs.Count;//リストが削除されることを考えていない
             //Instantiate(prefabs[num - 1], new Vector3(0f, 1f, 0f), Quaternion.identity);
-            temp = PhotonNetwork.Instantiate(pos, transform.position + new Vector3(0.0f, 1.0f, 0.0f) + (transform.forward * 0.5f), transform.rotation, 0);
-            //			particle = Instantiate (particle, transform.position + new Vector3(0.0f, 1.0f, 0.0f) + (transform.forward * 0.5f), transform.rotation) as GameObject;
-            temp.transform.localScale = new Vector3((float)((float)objScale/100.0), (float)((float)objScale / 100.0), (float)((float)objScale / 100.0));
-            temp.GetComponent<Rigidbody>().velocity = transform.forward * 15.0f;
-//            checkObjectNum(num);
+			float x = Random.Range(-25.0f,25.0f);
+			float y = Random.Range(0,5.0f);
+			float z = Random.Range(-25.0f,25.0f);
+
+			temp = PhotonNetwork.Instantiate(pos, new Vector3(x ,y, z) , transform.rotation, 0);
+			particle = Instantiate (particle, new Vector3(x ,y, z) , transform.rotation) as GameObject;
+            prefabs.Add(temp);
+           // temp.GetComponent<Rigidbody>().velocity = transform.forward * 15.0f;
+            checkObjectNum(num);
         }
     }
 
-/*
+
     void checkObjectNum(int num)
     {
         if(maxObjectNum <= num)
@@ -116,5 +80,4 @@ public class MonsterFire : MonoBehaviour {
             prefabs.RemoveAt(0);
         }
     }
-*/
 }
