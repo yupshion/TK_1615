@@ -5,7 +5,6 @@ using System.Collections;
 
 public class CameraTracking : MonoBehaviour {
 
-
 	// Use this for initialization
 	void Start () {
 		//カメラにVRカメラ以外の子オブジェクトがついていなければカメラの子供になる
