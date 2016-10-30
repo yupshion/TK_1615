@@ -15,6 +15,8 @@ public class ChangeScene : MonoBehaviour {
 	}
 	public void PhotonScript()
 	{
+		//Swiftのクラス呼び出し
+		SwiftClass.swiftFirstStartRecordingMethod ();
 		SceneManager.LoadScene("PhotonScript");// ←new!
 	}
 
