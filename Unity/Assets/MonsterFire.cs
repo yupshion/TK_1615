@@ -49,29 +49,49 @@ public class MonsterFire : MonoBehaviour {
 		//SwiftClass.swiftStartRecordingMethod ();
 
 		int num = 0;
+		if (message.IndexOf ("_") <= 0) {
+			if (message == "swiftstart") {
+				GameObject.Find ("RawImage").GetComponent<RawImage> ().enabled = true;
+			}
+			if (message == "swiftstop") {
+				GameObject.Find ("RawImage").GetComponent<RawImage> ().enabled = false;
+			}
+			return;
+		}
+			//string[0]:word, string[1]:value for scale
+			        string[] stArrayData = message.Split('_');
+			        int objScale = int.Parse(stArrayData[1]);
 
-        string pos = "Prefab/";
-        pos += message;
+			        string pos = "Prefab/";
+			        pos += stArrayData[0];
+
+			        Debug.Log(stArrayData[0]);
+
+       // string pos = "Prefab/";
+       // pos += message;
 
         //GameObject temp = (GameObject)Resources.Load(modelName);
         GameObject temp = (GameObject)Resources.Load(pos);
         if (temp != null)
         {
+			
             num = prefabs.Count;//リストが削除されることを考えていない
+
             //Instantiate(prefabs[num - 1], new Vector3(0f, 1f, 0f), Quaternion.identity);
-			float x = Random.Range(-25.0f,25.0f);
+			float x = Random.Range(-8.0f,8.0f);
 			float y = Random.Range(0,5.0f);
-			float z = Random.Range(-25.0f,25.0f);
+			float z = Random.Range(-8.0f,8.0f);
 
 			temp = PhotonNetwork.Instantiate(pos, new Vector3(x ,y, z) , transform.rotation, 0);
-			particle = Instantiate (particle, new Vector3(x ,y, z) , transform.rotation) as GameObject;
+
+				            temp.transform.localScale = new Vector3((float)((float)objScale/100.0), (float)((float)objScale / 100.0), (float)((float)objScale / 100.0));
+				particle = Instantiate (particle, new Vector3(x ,y, z) , transform.rotation) as GameObject;
             prefabs.Add(temp);
            // temp.GetComponent<Rigidbody>().velocity = transform.forward * 15.0f;
             checkObjectNum(num);
         }
     }
-
-
+		
     void checkObjectNum(int num)
     {
         if(maxObjectNum <= num)
