@@ -53,7 +53,7 @@ public class RandomMatchmaker : Photon.PunBehaviour
         if (PhotonNetwork.inRoom)
         {
             bool shoutMarco = GameLogic.playerWhoIsIt == PhotonNetwork.player.ID;
-
+/*
             if (shoutMarco && GUILayout.Button("Marco!"))
             {
                 myPhotonView.RPC("Marco", PhotonTargets.All);
@@ -62,6 +62,7 @@ public class RandomMatchmaker : Photon.PunBehaviour
             {
                 myPhotonView.RPC("Polo", PhotonTargets.All);
             }
+*/
         }
     }
 }
