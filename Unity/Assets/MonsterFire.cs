@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Collections;
 using UnityEngine.UI;
 
+// Start paralell development
+
 public class MonsterFire : MonoBehaviour {
 
     public string str;
