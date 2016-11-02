@@ -416,22 +416,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1000013042634464
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 4000013562179638}
-  - 114: {fileID: 114000012544204654}
-  m_Layer: 0
-  m_Name: Fire
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &1000013111712560
 GameObject:
   m_ObjectHideFlags: 1
@@ -598,7 +582,6 @@ GameObject:
   - 114: {fileID: 114000010879201548}
   - 114: {fileID: 114000010506157818}
   - 114: {fileID: 114000011396777332}
-  - 114: {fileID: 114000010947482980}
   m_Layer: 0
   m_Name: Card
   m_TagString: Player
@@ -855,7 +838,6 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 4000011440933288}
-  - {fileID: 4000013562179638}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &4000011335534640
@@ -878,8 +860,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000014275828142}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.47, y: 1.63, z: 0.68}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 1, y: 2.36, z: 0.95}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 4000013460434572}
@@ -1107,19 +1089,6 @@ Transform:
   - {fileID: 4000010584208640}
   m_Father: {fileID: 4000011440933288}
   m_RootOrder: 0
---- !u!4 &4000013562179638
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013042634464}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.2, y: 2.075, z: 0.16}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_Children: []
-  m_Father: {fileID: 4000011240485978}
-  m_RootOrder: 1
 --- !u!4 &4000013573334534
 Transform:
   m_ObjectHideFlags: 1
@@ -2388,17 +2357,6 @@ MonoBehaviour:
   trotAfterSeconds: 3
   canJump: 0
   isControllable: 0
---- !u!114 &114000010947482980
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000014159290770}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95944e6a2e9e9486b9e5500bd65cc219, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114000011396777332
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2411,19 +2369,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Childs: 3
---- !u!114 &114000012544204654
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013042634464}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67e495ba33b3046d480e321375d7eca7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  str: 
-  particle: {fileID: 100006, guid: 6aea392f353e04156a230db0fba22230, type: 2}
 --- !u!136 &136000011664287740
 CapsuleCollider:
   m_ObjectHideFlags: 1
