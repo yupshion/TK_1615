@@ -5,7 +5,7 @@ public class zerorotation : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		this.transform.rotation = Quaternion.identity;
+		//this.transform.rotation = Quaternion.identity;
 	
 	}
 	
