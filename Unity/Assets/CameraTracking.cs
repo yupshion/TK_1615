@@ -14,6 +14,7 @@ public class CameraTracking : MonoBehaviour {
 		int Count = obj.transform.childCount;
 		if (Count == Childs) {
 				transform.parent = obj.transform;
+				this.transform.localPosition = new Vector3 (0, -1.7f, -0.1f);
 				this.transform.localRotation = Quaternion.identity;
 			}
 	}
