@@ -53,6 +53,7 @@ GameObject:
   - 65: {fileID: 65000012620648372}
   - 114: {fileID: 114000010852492742}
   - 114: {fileID: 114000014164997206}
+  - 114: {fileID: 114000011225352338}
   m_Layer: 0
   m_Name: Gorilla
   m_TagString: Untagged
@@ -2457,6 +2458,23 @@ MonoBehaviour:
   viewIdField: 0
   instantiationId: -1
   isRuntimeInstantiated: 0
+--- !u!114 &114000011225352338
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010008287902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 463ac21d1eec145609148befa4f79f83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  size: {x: 0, y: 0, z: 0}
+  max: {x: 0, y: 0, z: 0}
+  min: {x: 0, y: 0, z: 0}
+  isChangingSize: 1
+  speed: 1
+  isStart: 1
 --- !u!114 &114000014164997206
 MonoBehaviour:
   m_ObjectHideFlags: 1

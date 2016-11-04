@@ -30,17 +30,27 @@ public class MonsterFire : MonoBehaviour {
 
         if(Input.GetKeyDown(KeyCode.C))
         {
-                        chooseModelInputText("apple");
+			if(Random.value < 0.5f)
+                        chooseModelInputText("apple_10");
+			else 
+				chooseModelInputText("apple_50");
+
             //GameObject.Find("RawImage").GetComponent<RawImage>().enabled = true;
 //            image.fillAmount = 0;
         }
 
         if (Input.GetKeyDown(KeyCode.B))
         {
-                        chooseModelInputText("gorilla");
+                        chooseModelInputText("gorilla_100");
             //GameObject.Find("RawImage").GetComponent<RawImage>().enabled = false;
             //            image.fillAmount = 0.5f;
         }
+		if (Input.GetKeyDown(KeyCode.V))
+		{
+			chooseModelInputText("emoji/smiley");
+			//GameObject.Find("RawImage").GetComponent<RawImage>().enabled = false;
+			//            image.fillAmount = 0.5f;
+		}
 
     }
 
@@ -87,8 +97,8 @@ public class MonsterFire : MonoBehaviour {
 
 			temp = PhotonNetwork.Instantiate(pos, new Vector3(x ,y, z) , transform.rotation, 0);
 
-				            temp.transform.localScale = new Vector3((float)((float)objScale/100.0), (float)((float)objScale / 100.0), (float)((float)objScale / 100.0));
-				particle = Instantiate (particle, new Vector3(x ,y, z) , transform.rotation) as GameObject;
+			temp.transform.localScale = new Vector3((float)((float)objScale/100.0), (float)((float)objScale / 100.0), (float)((float)objScale / 100.0));
+			particle = Instantiate (particle, new Vector3(x ,y, z) , transform.rotation) as GameObject;
             prefabs.Add(temp);
            // temp.GetComponent<Rigidbody>().velocity = transform.forward * 15.0f;
             checkObjectNum(num);
